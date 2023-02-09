@@ -10,9 +10,12 @@ export type InventoryCardProps = {
 
 //TODO: format value
 
-const InventoryCard = ({ item }: InventoryCardProps) => {
+const InventoryCard = ({ item, index }: InventoryCardProps) => {
+  const isInRightColindex = index % 2 === 0;
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, { marginLeft: !isInRightColindex ? 20 : 0 }]}
+    >
       <Image source={{ uri: item.photo }} style={styles.image} />
       <View style={styles.textContainer}>
         <Text style={styles.title}>{item.name}</Text>
@@ -24,10 +27,10 @@ const InventoryCard = ({ item }: InventoryCardProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: 265,
-    maxWidth: 157,
-    margin: 10,
-    aspectRatio: 2.3,
+    flex: 1,
+
+    height: 265,
+    marginTop: 20,
     borderRadius: BORDER_RADIUS,
     backgroundColor: colors.solidWhite,
     shadowColor: colors.shadow,

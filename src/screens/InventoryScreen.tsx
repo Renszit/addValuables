@@ -28,14 +28,15 @@ export default function InventoryScreen({
     <View style={styles.container}>
       <Title onButtonPress={handleAddButtonPress}>{route.name}</Title>
       <FlatList
+        contentContainerStyle={{ paddingBottom: 20 }}
+        style={{ height: "100%" }}
+        numColumns={2}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        numColumns={2}
         data={data}
-        contentContainerStyle={styles.itemContainer}
         renderItem={InventoryCard}
-        // columnWrapperStyle={{ margin: 10 }}
+        ListFooterComponent={() => <View style={{ height: 20 }} />}
       />
     </View>
   );
@@ -43,15 +44,10 @@ export default function InventoryScreen({
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
     flex: 1,
+    height: "100%",
+    paddingHorizontal: 20,
     backgroundColor: colors.background,
-    alignItems: "center",
-  },
-  itemContainer: {
-    width: "100%",
-    padding: 10,
-    marginTop: 20,
     justifyContent: "space-between",
   },
 });

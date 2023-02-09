@@ -7,7 +7,6 @@ import { ImagePicker } from "../sdk/ImagePicker";
 import { ImagePickerAsset } from "expo-image-picker";
 
 //TODO: change icon to figma icon
-//TODO: type check
 
 const UploadPhoto = ({ handleChange }) => {
   const [image, setImage] = useState<string | null>(null);

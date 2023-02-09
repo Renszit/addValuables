@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   TextInput,
   View,
@@ -7,6 +8,7 @@ import {
   TextInputProps,
 } from "react-native";
 import { colors } from "../theme/colors";
+import { fonts } from "../theme/fonts";
 
 export type CustomTextInputProps = {
   value: string | undefined | number;
@@ -24,13 +26,31 @@ const CustomTextInput = ({
   name,
   ...props
 }: CustomTextInputProps) => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const toggleFocus = () => {
+    setIsFocused(!isFocused);
+  };
+
   return (
     <View>
-      <Text style={styles.textLabel}>{name}</Text>
-      <View style={styles.textFieldContainer}>
+      <Text style={styles.textLabel}>
+        {name[0].toUpperCase() + name.slice(1)}
+      </Text>
+      <View
+        style={[
+          styles.textFieldContainer,
+          {
+            borderColor: isFocused ? colors.mainBlue : colors.fadedGrey,
+            borderWidth: isFocused ? 2 : 1,
+          },
+        ]}
+      >
         <TextInput
           accessibilityLabel={name}
-          value={value}
+          value={value?.toString()}
+          onFocus={toggleFocus}
+          onBlur={toggleFocus}
           onChangeText={(e) => onChange(e, name)}
           placeholder={placeholder}
           multiline={true}
@@ -48,6 +68,9 @@ const styles = StyleSheet.create({
   },
   textLabel: {
     marginBottom: 5,
+    fontSize: 13,
+    color: colors.textBlack,
+    fontFamily: fonts.bold,
   },
   textFieldContainer: {
     backgroundColor: colors.solidWhite,
