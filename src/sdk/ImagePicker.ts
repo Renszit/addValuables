@@ -10,10 +10,10 @@ export type ImageInfo = {
 
 export type ImagePickerResult =
     | {
-          cancelled: true
+          canceled: true
       }
     | ({
-          cancelled: false
+          canceled: false
       } & ImageInfo)
     | undefined
 

@@ -1,52 +1,51 @@
-import { useEffect, useState } from "react";
-import { View, StyleSheet, TextInput, Text } from "react-native";
-import { colors } from "../theme/colors";
+import { useContext, useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
+
+import { InventoryItem } from "../navigation/types";
 import CustomTextInput from "./CustomTextInput";
 import UploadPhoto from "./UploadPhoto";
 
-//TODO: make textfield container tappable to focus on textinput
+type AddDataFormProps = {
+  newData: InventoryItem;
+  toggleButton: (bool: boolean) => void;
+  handleChange: (val: string, name: string) => void;
+};
 
-const AddDataForm = ({ toggleButton }) => {
-  const [data, setData] = useState({
-    name: "",
-    value: "",
-    description: "",
-    image: null,
-  });
-
-  const handleChange = (val: any, name: string) => {
-    if (name === "image") {
-      setData({ ...data, [name]: val });
-    } else {
-      setData({ ...data, [name]: val?.target.value });
-    }
-  };
-
+const AddDataForm = ({
+  newData,
+  toggleButton,
+  handleChange,
+}: AddDataFormProps) => {
   useEffect(() => {
-    if (data.name != "" && data.value != "" && data.image != null) {
+    if (
+      newData.name != "" &&
+      newData.value != "" &&
+      newData.photo != "" &&
+      newData.photo != null
+    ) {
       toggleButton(true);
     } else {
       toggleButton(false);
     }
-  }, [data]);
+  }, [newData]);
 
   return (
     <View style={styles.container}>
       <UploadPhoto handleChange={handleChange} />
       <View>
         <CustomTextInput
-          value={data.name}
+          value={newData.name}
           onChange={handleChange}
           name={"name"}
         />
         <CustomTextInput
-          value={data.value}
+          value={newData.value}
           onChange={handleChange}
           keyboardType={"numeric"}
           name={"value"}
         />
         <CustomTextInput
-          value={data.description}
+          value={newData.description}
           onChange={handleChange}
           placeholder={"Optional"}
           name={"description"}

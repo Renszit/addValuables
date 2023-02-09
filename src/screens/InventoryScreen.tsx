@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   FlatList,
   ScrollView,
@@ -6,44 +6,52 @@ import {
   View,
   Dimensions,
 } from "react-native";
-import InventoryCard, { InventoryItem } from "../components/InventoryCard";
+import { DataContext } from "../../DataProvider";
+
+import InventoryCard from "../components/InventoryCard";
 import { Title } from "../components/Title";
-import { RootTabScreenProps } from "../navigation/types";
+import { InventoryItem, RootTabScreenProps } from "../navigation/types";
 import { colors } from "../theme/colors";
-import MOCK_DATA from "./mockdata.json";
+import { BORDER_RADIUS } from "../theme/constants";
 
 export default function InventoryScreen({
   navigation,
   route,
 }: RootTabScreenProps<"Inventory">) {
-  const [data, setData] = useState<InventoryItem[]>(MOCK_DATA);
-
+  const { data } = useContext(DataContext);
   const handleAddButtonPress = () => navigation.navigate("AddItem");
+
+  //TODO: fix layout
+  //TODO: fix type keyExtractor
 
   return (
     <View style={styles.container}>
       <Title onButtonPress={handleAddButtonPress}>{route.name}</Title>
       <FlatList
-        directionalLockEnabled={true}
-        keyExtractor={(item: InventoryItem) => item.id.toString()}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        numColumns={Math.ceil(MOCK_DATA.length / 2)}
+        numColumns={2}
         data={data}
-        contentContainerStyle={{ width: Dimensions.get("window").width }}
+        contentContainerStyle={styles.itemContainer}
         renderItem={InventoryCard}
+        // columnWrapperStyle={{ margin: 10 }}
       />
     </View>
   );
 }
-//TODO: fix layout
-//TODO: remove horizontal scroll/scrollview
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get("window").width,
     paddingHorizontal: 20,
+    flex: 1,
     backgroundColor: colors.background,
     alignItems: "center",
+  },
+  itemContainer: {
+    width: "100%",
+    padding: 10,
+    marginTop: 20,
+    justifyContent: "space-between",
   },
 });

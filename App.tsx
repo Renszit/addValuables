@@ -4,6 +4,10 @@ import { useFonts } from "expo-font";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { fonts } from "./src/theme/fonts";
 import { ActivityIndicator } from "react-native";
+import { InventoryItem } from "./src/navigation/types";
+import { createContext, useState } from "react";
+import MOCK_DATA from "./mockdata.json";
+import { DataContextProvider } from "./DataProvider";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,9 +22,12 @@ export default function App() {
         style={{ justifyContent: "center", flex: 1 }}
       />
     );
+
   return (
     <SafeAreaProvider>
-      <Navigation />
+      <DataContextProvider>
+        <Navigation />
+      </DataContextProvider>
       <StatusBar />
     </SafeAreaProvider>
   );

@@ -7,19 +7,20 @@ import { ImagePicker } from "../sdk/ImagePicker";
 import { ImagePickerAsset } from "expo-image-picker";
 
 //TODO: change icon to figma icon
+//TODO: type check
 
 const UploadPhoto = ({ handleChange }) => {
-  const [image, setImage] = useState<ImagePickerAsset | null>(null);
-  console.log(image);
+  const [image, setImage] = useState<string | null>(null);
+
   const pickImage = async () => {
     const result = await ImagePicker.takePhoto();
-    if (result) {
-      setImage(result.assets[0]);
+    if (!result?.canceled) {
+      setImage(result.assets[0].uri);
     }
   };
 
   useEffect(() => {
-    handleChange(image, "image");
+    handleChange(image, "photo");
   }, [image]);
 
   return (
@@ -36,7 +37,7 @@ const UploadPhoto = ({ handleChange }) => {
         {image && (
           <View style={styles.imageContainer}>
             <Image
-              source={{ uri: image.uri }}
+              source={{ uri: image }}
               style={{ width: 150, height: 150, borderRadius: 75 }}
             />
             <Pressable

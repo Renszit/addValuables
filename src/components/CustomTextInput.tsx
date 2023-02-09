@@ -9,7 +9,7 @@ import {
 import { colors } from "../theme/colors";
 
 export type CustomTextInputProps = {
-  value: string;
+  value: string | undefined | number;
   onChange: (e: any, name: string) => void;
   placeholder?: string;
   name: string;
@@ -31,7 +31,7 @@ const CustomTextInput = ({
         <TextInput
           accessibilityLabel={name}
           value={value}
-          onChange={(val) => onChange(val, name)}
+          onChangeText={(e) => onChange(e, name)}
           placeholder={placeholder}
           multiline={true}
           {...props}

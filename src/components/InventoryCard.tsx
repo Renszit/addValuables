@@ -1,20 +1,14 @@
 import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+import { InventoryItem } from "../navigation/types";
 import { colors } from "../theme/colors";
 import { BORDER_RADIUS } from "../theme/constants";
 import { fonts } from "../theme/fonts";
 
-export type InventoryItem = {
-  id: number;
-  name: string;
-  purchasePrice: number;
-  type: string;
-  description?: string | null;
-  photo: string;
-};
-
 export type InventoryCardProps = {
   item: InventoryItem;
 };
+
+//TODO: format value
 
 const InventoryCard = ({ item }: InventoryCardProps) => {
   return (
@@ -22,7 +16,7 @@ const InventoryCard = ({ item }: InventoryCardProps) => {
       <Image source={{ uri: item.photo }} style={styles.image} />
       <View style={styles.textContainer}>
         <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.subtitle}>{"€" + item.purchasePrice}</Text>
+        <Text style={styles.subtitle}>{"€" + item.value}</Text>
       </View>
     </View>
   );
@@ -32,7 +26,6 @@ const styles = StyleSheet.create({
   container: {
     minHeight: 265,
     maxWidth: 157,
-    // height: 265,
     margin: 10,
     aspectRatio: 2.3,
     borderRadius: BORDER_RADIUS,
