@@ -9,6 +9,7 @@ export type InventoryCardProps = {
 };
 
 //TODO: format value
+//TODO: fix shadow clipping
 
 const InventoryCard = ({ item, index }: InventoryCardProps) => {
   const isInRightColindex = index % 2 === 0;
@@ -28,7 +29,6 @@ const InventoryCard = ({ item, index }: InventoryCardProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     height: 265,
     marginTop: 20,
     borderRadius: BORDER_RADIUS,

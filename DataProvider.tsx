@@ -8,7 +8,7 @@ export const DataContextProvider = ({ children }) => {
   const [data, setData] = useState<InventoryItem[]>(MOCK_DATA);
 
   const updateData = (newData: InventoryItem) => {
-    setData([...data, newData]);
+    setData([newData, ...data]);
   };
 
   return (
