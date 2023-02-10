@@ -8,7 +8,6 @@ export type InventoryCardProps = {
   item: InventoryItem;
 };
 
-//TODO: format value
 //TODO: fix shadow clipping
 
 const InventoryCard = ({ item, index }: InventoryCardProps) => {
@@ -20,7 +19,9 @@ const InventoryCard = ({ item, index }: InventoryCardProps) => {
       <Image source={{ uri: item.photo }} style={styles.image} />
       <View style={styles.textContainer}>
         <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.subtitle}>{"€" + item.value}</Text>
+        <Text style={styles.subtitle}>
+          {"€" + item.value.toLocaleString("en-US")}
+        </Text>
       </View>
     </View>
   );

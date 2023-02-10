@@ -21,7 +21,6 @@ export default function InventoryScreen({
   const { data } = useContext(DataContext);
   const handleAddButtonPress = () => navigation.navigate("AddItem");
 
-  //TODO: fix layout
   //TODO: fix type keyExtractor
 
   return (
@@ -31,7 +30,7 @@ export default function InventoryScreen({
         contentContainerStyle={{ paddingBottom: 20 }}
         style={{ height: "100%" }}
         numColumns={2}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => " key" + index + item.id}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         data={data}

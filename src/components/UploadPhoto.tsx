@@ -13,6 +13,7 @@ const UploadPhoto = ({ handleChange }) => {
 
   const pickImage = async () => {
     const result = await ImagePicker.takePhoto();
+
     if (!result?.canceled) {
       setImage(result.assets[0].uri);
     }
@@ -25,6 +26,7 @@ const UploadPhoto = ({ handleChange }) => {
   return (
     <View style={styles.container}>
       <Pressable
+        accessibilityLabel="pickPhoto"
         onPress={pickImage}
         style={({ pressed }) => [
           { opacity: pressed ? 0.5 : 1 },
@@ -36,6 +38,7 @@ const UploadPhoto = ({ handleChange }) => {
         {image && (
           <View style={styles.imageContainer}>
             <Image
+              accessibilityLabel={"photo"}
               source={{ uri: image }}
               style={{ width: 150, height: 150, borderRadius: 75 }}
             />

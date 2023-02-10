@@ -8,6 +8,7 @@ export default function Button({
 }: PressableProps & { title: string }) {
   return (
     <Pressable
+      accessibilityLabel={title}
       onPress={onPress}
       disabled={disabled}
       style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1 }]}

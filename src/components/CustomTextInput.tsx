@@ -47,7 +47,7 @@ const CustomTextInput = ({
         ]}
       >
         <TextInput
-          accessibilityLabel={name}
+          accessibilityLabel={name + "Input"}
           value={value?.toString()}
           onFocus={toggleFocus}
           onBlur={toggleFocus}
