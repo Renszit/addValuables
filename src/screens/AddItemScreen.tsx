@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { DataContext } from "../../DataProvider";
 
+import { DataContext } from "../../DataProvider";
 import AddDataForm from "../components/AddDataForm";
 import Button from "../components/Button";
 import { InventoryItem, RootTabScreenProps } from "../navigation/types";

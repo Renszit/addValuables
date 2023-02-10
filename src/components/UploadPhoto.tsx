@@ -1,10 +1,10 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { useEffect, useState } from "react";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+
+import { ImagePicker } from "../sdk/ImagePicker";
 import { colors } from "../theme/colors";
 import { fonts } from "../theme/fonts";
-import { useEffect, useState } from "react";
-import { ImagePicker } from "../sdk/ImagePicker";
-import { ImagePickerAsset } from "expo-image-picker";
 
 //TODO: change icon to figma icon
 

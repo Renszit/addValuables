@@ -1,18 +1,11 @@
 import { useContext, useState } from "react";
-import {
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  View,
-  Dimensions,
-} from "react-native";
-import { DataContext } from "../../DataProvider";
+import { FlatList, StyleSheet, View } from "react-native";
 
+import { DataContext } from "../../DataProvider";
 import InventoryCard from "../components/InventoryCard";
 import { Title } from "../components/Title";
-import { InventoryItem, RootTabScreenProps } from "../navigation/types";
+import { RootTabScreenProps } from "../navigation/types";
 import { colors } from "../theme/colors";
-import { BORDER_RADIUS } from "../theme/constants";
 
 export default function InventoryScreen({
   navigation,
@@ -20,8 +13,6 @@ export default function InventoryScreen({
 }: RootTabScreenProps<"Inventory">) {
   const { data } = useContext(DataContext);
   const handleAddButtonPress = () => navigation.navigate("AddItem");
-
-  //TODO: fix type keyExtractor
 
   return (
     <View style={styles.container}>
