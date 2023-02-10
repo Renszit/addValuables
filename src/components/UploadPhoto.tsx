@@ -7,6 +7,7 @@ import { colors } from "../theme/colors";
 import { fonts } from "../theme/fonts";
 
 //TODO: change icon to figma icon
+//TODO: implement image picker
 
 const UploadPhoto = ({ handleChange }) => {
   const [image, setImage] = useState<string | null>(null);
